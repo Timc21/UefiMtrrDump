@@ -1,0 +1,14 @@
+<component>
+    name = "MtrrDump"
+    category = ModulePart
+    RefName = "MtrrDump"
+[INF]
+"Pei/MtrrDumpPei.inf"
+"Dxe/MtrrDumpDxe.inf"
+[files]
+"MtrrDump.sdl"
+"Common/MtrrDumpCommon.h"
+"Common/MtrrDumpCommon.c"
+"Pei/MtrrDumpPei.c"
+"Dxe/MtrrDumpDxe.c"
+<endComponent>

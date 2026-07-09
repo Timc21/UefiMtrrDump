@@ -1,0 +1,29 @@
+[Defines]
+  INF_VERSION                    = 0x00010017
+  BASE_NAME                      = MtrrDumpPei
+  FILE_GUID                      = 8B2C3D4E-5F6A-7B8C-9D0E-1F2A3B4C5D6E
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = MtrrDumpPeiEntry
+
+[Sources]
+  MtrrDumpPei.c
+  ../Common/MtrrDumpCommon.c
+  ../Common/MtrrDumpCommon.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+
+[LibraryClasses]
+  PeimEntryPoint
+  PeiServicesLib
+  DebugLib
+  BaseLib
+  MtrrLib
+
+[Ppis]
+  gEfiEndOfPeiSignalPpiGuid     ## CONSUMES
+
+[Depex]
+  TRUE

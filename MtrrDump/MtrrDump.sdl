@@ -1,0 +1,29 @@
+TOKEN
+    Name  = "JBL_MTRR_DUMP_SUPPORT"
+    Value = "1"
+    Help  = "Enable MTRR dump at PEI-EndOfPei, DXE-Entry, EndOfDxe, ReadyToBoot"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+End
+
+PATH
+    Name = "MTRR_DUMP_DIR"
+End
+
+INFComponent
+    Name = "MtrrDumpPei"
+    File = "Pei/MtrrDumpPei.inf"
+    Package = "JabilCorePkg"
+    ModuleTypes = "PEIM"
+    Token = "JBL_MTRR_DUMP_SUPPORT" "=" "1"
+End
+
+INFComponent
+    Name = "MtrrDumpDxe"
+    File = "Dxe/MtrrDumpDxe.inf"
+    Package = "JabilCorePkg"
+    ModuleTypes = "DXE_DRIVER"
+    Token = "JBL_MTRR_DUMP_SUPPORT" "=" "1"
+End

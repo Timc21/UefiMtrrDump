@@ -1,0 +1,31 @@
+[Defines]
+  INF_VERSION                    = 0x00010017
+  BASE_NAME                      = MtrrDumpDxe
+  FILE_GUID                      = 7A3E2B4C-1F8D-4D56-9E3A-C8B7F2A41D05
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = MtrrDumpDxeEntry
+
+[Sources]
+  MtrrDumpDxe.c
+  ../Common/MtrrDumpCommon.c
+  ../Common/MtrrDumpCommon.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  UefiLib
+  DebugLib
+  BaseLib
+  MtrrLib
+
+[Guids]
+  gEfiEndOfDxeEventGroupGuid    ## CONSUMES ## Event
+  gEfiEventReadyToBootGuid      ## CONSUMES ## Event
+
+[Depex]
+  TRUE
