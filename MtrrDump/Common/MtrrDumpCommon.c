@@ -39,9 +39,7 @@ MtrrDumpPrint (
     VariableMtrrCount));
 
   for (Index = 0; Index < MTRR_NUMBER_OF_FIXED_MTRR; Index++) {
-    if (MtrrSettings.Fixed.Mtrr[Index] != 0) {
-      DEBUG ((DEBUG_ERROR, "  Fixed[%02d]: %016lx\n", Index, MtrrSettings.Fixed.Mtrr[Index]));
-    }
+    DEBUG ((DEBUG_ERROR, "  Fixed[%02d]: %016lx\n", Index, MtrrSettings.Fixed.Mtrr[Index]));
   }
 
   for (Index = 0; Index < VariableMtrrCount; Index++) {
