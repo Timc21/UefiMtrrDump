@@ -49,8 +49,17 @@ MtrrDumpPrint (
       UINT8  Type = (UINT8)(MtrrSettings.Variables.Mtrr[Index].Base & 0xFF);
       UINT64 BaseAddr = MtrrSettings.Variables.Mtrr[Index].Base & 0xFFFFFFFFFFFFF000ULL;
       UINT64 MaskAddr = MtrrSettings.Variables.Mtrr[Index].Mask & 0xFFFFFFFFFFFFF000ULL;
-      DEBUG ((DEBUG_ERROR, "  Var[%02d]: 0x%012lx Mask=0x%012lx %a\n",
-        Index, BaseAddr, MaskAddr,
+      //
+      // Calculate range: Size = 2^N where N = position of lowest set bit in MaskAddr
+      // Use bit scan to find lowest set bit
+      //
+      UINT64 Size = MaskAddr & (~MaskAddr + 1);  // Isolate lowest set bit = size
+      UINT64 Start = BaseAddr & MaskAddr;
+      UINT64 End = Start + Size - 1;
+      UINT32 SizeMB = (UINT32)(Size >> 20);
+
+      DEBUG ((DEBUG_ERROR, "  Var[%02d]: 0x%09lx - 0x%09lx (%dMB) %a\n",
+        Index, Start, End, SizeMB,
         (Type == 6) ? "WB" : (Type == 0) ? "UC" :
         (Type == 1) ? "WC" : (Type == 4) ? "WT" :
         (Type == 5) ? "WP" : "??"));
